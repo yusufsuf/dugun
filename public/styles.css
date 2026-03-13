@@ -1,0 +1,285 @@
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --ink: #111111;
+  --muted: #737373;
+  --accent: #111111;
+  --accent-soft: #f5f5f5;
+  --line: #e5e5e5;
+  --success-bg: #ecfdf5;
+  --success-text: #059669;
+  --error-bg: #fef2f2;
+  --error-text: #dc2626;
+  --radius-card: 12px;
+  --radius-btn: 8px;
+  --radius-input: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background-color: #f0f0f0; /* Fallback */
+  background-image: url('/fato.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.page {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+.workspace {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.upload-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  padding: 40px;
+  border-radius: var(--radius-card);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-head {
+  margin-bottom: 32px;
+}
+
+.card-head h2 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.form-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field span,
+.selection-box strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+input {
+  width: 100%;
+  border: 1px solid #d4d4d4;
+  border-radius: var(--radius-input);
+  padding: 14px 16px;
+  background: #ffffff;
+  color: var(--ink);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+  font-family: inherit;
+}
+
+input:focus {
+  border-color: var(--accent);
+}
+
+input::placeholder {
+  color: #a3a3a3;
+}
+
+.dropzone {
+  padding: 32px 24px;
+  text-align: center;
+  border-radius: var(--radius-btn);
+  border: 1px dashed #d4d4d4;
+  background: #fafafa;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  cursor: pointer;
+}
+
+.dropzone:hover {
+  border-color: #a3a3a3;
+  background: #f5f5f5;
+}
+
+.dropzone.has-files {
+  border-color: var(--accent);
+  background: #ffffff;
+  border-style: solid;
+}
+
+.dropzone-copy {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.dropzone input::file-selector-button {
+  margin: 0 auto;
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-btn);
+  padding: 8px 16px;
+  font: inherit;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.dropzone input::file-selector-button:hover {
+  background: #f5f5f5;
+}
+
+.selection-box {
+  margin-top: 24px;
+  border-radius: var(--radius-btn);
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.selection-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.selection-pill {
+  min-height: 28px;
+  padding: 0 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: #f5f5f5;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+}
+
+.selection-box p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.file-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.file-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.file-list li span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.file-list li small {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.action-row {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  border: 0;
+  border-radius: var(--radius-btn);
+  padding: 14px 28px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #ffffff;
+  background: var(--accent);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  font-family: inherit;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.status-box {
+  display: none;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: var(--radius-btn);
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+}
+
+.status-box.visible {
+  display: block;
+}
+
+.status-box.success {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.status-box.error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.status-box ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .page {
+    width: min(100% - 24px, 1200px);
+    padding: 32px 0;
+  }
+  
+  .upload-card {
+    padding: 24px;
+  }
+}

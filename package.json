@@ -1,0 +1,21 @@
+{
+  "name": "media-upload-site",
+  "version": "1.0.0",
+  "description": "Ad-soyad bilgisiyle fotograf ve video yukleme uygulamasi",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "googleapis": "^171.4.0",
+    "multer": "^2.1.1",
+    "multer-google-drive": "^1.0.3"
+  }
+}
