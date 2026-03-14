@@ -38,7 +38,7 @@ body {
 .page {
   width: min(1200px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 64px 0;
+  padding: 24px 0;
 }
 
 .workspace {
@@ -119,7 +119,7 @@ input::placeholder {
 }
 
 .dropzone {
-  padding: 32px 24px;
+  padding: 20px 16px;
   text-align: center;
   border-radius: var(--radius-btn);
   border: 1px dashed rgba(17, 17, 17, 0.25);
@@ -294,10 +294,10 @@ button:disabled {
 @media (max-width: 640px) {
   .page {
     width: min(100% - 24px, 1200px);
-    padding: 32px 0;
+    padding: 8px 0;
   }
   
   .upload-card {
-    padding: 24px;
+    padding: 16px 0;
   }
 }
