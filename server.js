@@ -16,7 +16,12 @@ const oauth2Client = new google.auth.OAuth2(
 
 // Load existing token if available
 const TOKEN_PATH = path.join(__dirname, "token.json");
-if (fs.existsSync(TOKEN_PATH)) {
+
+if (process.env.REFRESH_TOKEN) {
+  // Eger Coolify paneline REFRESH_TOKEN eklendiyse, server her basladiginda oradan okur. Asla unutmaz.
+  oauth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+} else if (fs.existsSync(TOKEN_PATH)) {
+  // Lokal gelistirme formati
   const token = JSON.parse(fs.readFileSync(TOKEN_PATH, "utf8"));
   oauth2Client.setCredentials(token);
 }
@@ -82,7 +87,17 @@ app.get("/oauth2callback", async (req, res) => {
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
     fs.writeFileSync(TOKEN_PATH, JSON.stringify(tokens));
-    res.send("Basariyla Google Drive'a baglandiniz. Artik sekmeyi kapatabilirsiniz.");
+    
+    // Ekranda Refresh Token'ı kullanıcıya göster ki Coolify paneline kopyalayabilsin.
+    res.send(`
+      <div style="font-family: sans-serif; padding: 40px; max-width: 600px; margin: 0 auto; background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+        <h2 style="color: #059669;">✅ Basariyla Google Drive'a Baglandiniz!</h2>
+        <p>Ancak, sunucunuzun (Coolify) yeniden baslatmalarda bu onayı unutmamasi icin son bir adim kaldi:</p>
+        <p><b>1.</b> Asagidaki uzun kodu kopyalayin.<br><b>2.</b> Coolify panelinizdeki <b>Environment Variables</b> kismina gidin.<br><b>3.</b> <code>REFRESH_TOKEN</code> adinda yepyeni bir degisken ekleyin ve kopyaladiginiz kodu icine yapistirip kaydedin.<br><b>4.</b> Bir kez daha Deploy (Yeniden Kur) tusuna basin.</p>
+        <p>Bunu yaptiginizda sistem bir daha size ASLA onay sormayacak, tamamen otomatiklesecektir.</p>
+        <textarea style="width: 100%; height: 120px; font-family: monospace; padding: 10px; border-radius: 4px; border: 1px solid #ccc;" readonly>${tokens.refresh_token || "Tekrarlanan deneme. Lutfen Google hesabınızin erisimini kaldirip tekrar deneyin."}</textarea>
+      </div>
+    `);
   } catch (error) {
     console.error("Token verilirken hata olustu:", error);
     res.status(500).send("Kimlik dogrulama sirasinda bir hata olustu.");
