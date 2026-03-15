@@ -43,8 +43,8 @@ Object.values(STORAGE_TARGETS).forEach((target) => ensureDir(target.dir));
 const upload = multer({
   dest: TMP_UPLOAD_DIR,
   limits: {
-    files: 20,
-    fileSize: 200 * 1024 * 1024,
+    files: 250,
+    fileSize: 2 * 1024 * 1024 * 1024, // 2 GB
   },
   fileFilter: (_req, file, callback) => {
     const isSupported =
@@ -174,8 +174,8 @@ app.use((error, _req, res, _next) => {
   if (error instanceof multer.MulterError) {
     const message =
       error.code === "LIMIT_FILE_SIZE"
-        ? "Bir dosya 200 MB limitini asti."
-        : "Yukleme sirasinda gecerli olmayan bir dosya secildi.";
+        ? "Bir dosya 2 GB limitini asti."
+        : "Yukleme sirasinda gecerli olmayan bir dosya secildi VEYA dosya adeti limitini (250) astiniz.";
 
     res.status(400).json({ message });
     return;
